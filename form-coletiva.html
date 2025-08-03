@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário Pessoa Coletiva - Distribuidora Valor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo-section">
+                <h1 class="company-name">DISTRIBUIDORA VALOR</h1>
+                <p class="company-subtitle">S.D.V.M. (SU), S.A.</p>
+            </div>
+        </header>
+
+        <main class="form-container">
+            <div class="form-header">
+                <h2 class="form-title">Ficha de Abertura de Conta Pessoa Coletiva</h2>
+                <p class="form-subtitle">Preencha todos os campos obrigatórios para abrir a conta de custódia da empresa</p>
+                
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <form id="coletivaForm" novalidate>
+                <!-- Tipo de Serviço e Cliente -->
+                <div class="form-section">
+                    <h3 class="section-title">Tipo de Serviço e Cliente</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label required">Tipo de Serviço:</label>
+                            <div class="radio-group">
+                                <div class="radio-item">
+                                    <input type="radio" id="coletivaCorretagem" name="tipoServico" value="CORRETAGEM" class="radio-input" required>
+                                    <label for="coletivaCorretagem" class="radio-label">Corretagem</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="coletivaGestaoNaoDiscricionaria" name="tipoServico" value="GESTAO_NAO_DISCRICIONARIA" class="radio-input">
+                                    <label for="coletivaGestaoNaoDiscricionaria" class="radio-label">Gestão Não Discricionária</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="coletivaGestaoDiscricionaria" name="tipoServico" value="GESTAO_DISCRICIONARIA" class="radio-input">
+                                    <label for="coletivaGestaoDiscricionaria" class="radio-label">Gestão Discricionária</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="coletivaConsultoria" name="tipoServico" value="CONSULTORIA" class="radio-input">
+                                    <label for="coletivaConsultoria" class="radio-label">Consultoria</label>
+                                </div>
+                            </div>
+                            <div class="error-message" id="tipoServicoError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="tipoCliente" class="form-label required">Tipo de Cliente</label>
+                            <select id="tipoCliente" name="tipoCliente" class="form-select" required>
+                                <option value="">Selecione...</option>
+                                <option value="PRIVADA">Privada</option>
+                                <option value="ESTATAL">Estatal</option>
+                                <option value="INSTITUCIONAL">Institucional</option>
+                                <option value="ONGS">ONG's</option>
+                                <option value="RELIGIOSAS">Religiosas</option>
+                                <option value="INSTITUICAO_FINANCEIRA">Instituição Financeira</option>
+                                <option value="OUTRO">Outro</option>
+                            </select>
+                            <div class="error-message" id="tipoClienteError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="tipoSociedade" class="form-label required">Tipo de Sociedade</label>
+                            <select id="tipoSociedade" name="tipoSociedade" class="form-select" required>
+                                <option value="">Selecione...</option>
+                                <option value="ANONIMA">Anónima</option>
+                                <option value="POR_QUOTAS">Por Quotas</option>
+                                <option value="COOPERATIVA">Cooperativa</option>
+                                <option value="EM_NOME_COLETIVO">Em Nome Coletivo</option>
+                                <option value="SGPS">SGPS</option>
+                                <option value="OUTRO">Outro</option>
+                            </select>
+                            <div class="error-message" id="tipoSociedadeError"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 1. DADOS DA EMPRESA -->
+                <div class="form-section">
+                    <h3 class="section-title">1. Dados da Empresa</h3>
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label for="denominacaoSocial" class="form-label required">Denominação Social</label>
+                            <input type="text" id="denominacaoSocial" name="denominacaoSocial" class="form-input" required>
+                            <div class="error-message" id="denominacaoSocialError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="nifEmpresa" class="form-label required">NIF</label>
+                            <input type="text" id="nifEmpresa" name="nifEmpresa" class="form-input" required>
+                            <div class="error-message" id="nifEmpresaError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="diarioRepublica" class="form-label">Nº Diário da República</label>
+                            <input type="text" id="diarioRepublica" name="diarioRepublica" class="form-input">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="serie" class="form-label">Série</label>
+                            <input type="text" id="serie" name="serie" class="form-input">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="matriculaRegistoComercial" class="form-label">Nº Matrícula do Registo Comercial</label>
+                            <input type="text" id="matriculaRegistoComercial" name="matriculaRegistoComercial" class="form-input">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="dataCRC" class="form-label">Data da CRC</label>
+                            <input type="date" id="dataCRC" name="dataCRC" class="form-input">
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="sectorActividades" class="form-label required">Sector de Actividades</label>
+                            <input type="text" id="sectorActividades" name="sectorActividades" class="form-input" required>
+                            <div class="error-message" id="sectorActividadesError"></div>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="objectoSocial" class="form-label required">Objecto Social</label>
+                            <textarea id="objectoSocial" name="objectoSocial" class="form-textarea" required></textarea>
+                            <div class="error-message" id="objectoSocialError"></div>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="actividadePrincipal" class="form-label required">Actividade Principal</label>
+                            <input type="text" id="actividadePrincipal" name="actividadePrincipal" class="form-input" required>
+                            <div class="error-message" id="actividadePrincipalError"></div>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="finalidadeNegocio" class="form-label">Finalidade do negócio</label>
+                            <textarea id="finalidadeNegocio" name="finalidadeNegocio" class="form-textarea"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. MORADA E CONTACTOS DA EMPRESA -->
+                <div class="form-section">
+                    <h3 class="section-title">2. Morada e Contactos da Empresa</h3>
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label for="enderecoSede" class="form-label required">Endereço da Sede</label>
+                            <input type="text" id="enderecoSede" name="enderecoSede" class="form-input" required>
+                            <div class="error-message" id="enderecoSedeError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="municipioEmpresa" class="form-label required">Município</label>
+                            <input type="text" id="municipioEmpresa" name="municipioEmpresa" class="form-input" required>
+                            <div class="error-message" id="municipioEmpresaError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="provinciaEmpresa" class="form-label required">Província</label>
+                            <input type="text" id="provinciaEmpresa" name="provinciaEmpresa" class="form-input" required>
+                            <div class="error-message" id="provinciaEmpresaError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="codigoPostalEmpresa" class="form-label">Código Postal</label>
+                            <input type="text" id="codigoPostalEmpresa" name="codigoPostalEmpresa" class="form-input">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="paisEmpresa" class="form-label required">País</label>
+                            <input type="text" id="paisEmpresa" name="paisEmpresa" class="form-input" value="Angola" required>
+                            <div class="error-message" id="paisEmpresaError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label required">Meio Preferencial de Comunicação</label>
+                            <div class="radio-group">
+                                <div class="radio-item">
+                                    <input type="radio" id="comunicacaoTelef" name="meioPreferencialComunicacao" value="telefone" class="radio-input" required>
+                                    <label for="comunicacaoTelef" class="radio-label">Telefone</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="comunicacaoEmail" name="meioPreferencialComunicacao" value="email" class="radio-input">
+                                    <label for="comunicacaoEmail" class="radio-label">Email</label>
+                                </div>
+                            </div>
+                            <div class="error-message" id="meioPreferencialComunicacaoError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="melhorHoraDasEmpresa" class="form-label">Melhor Hora para Contacto - Das</label>
+                            <input type="time" id="melhorHoraDasEmpresa" name="melhorHoraDasEmpresa" class="form-input">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="melhorHoraAteEmpresa" class="form-label">Até</label>
+                            <input type="time" id="melhorHoraAteEmpresa" name="melhorHoraAteEmpresa" class="form-input">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="telemovelEmpresa" class="form-label required">Telemóvel</label>
+                            <input type="tel" id="telemovelEmpresa" name="telemovelEmpresa" class="form-input" required>
+                            <div class="error-message" id="telemovelEmpresaError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="telemovel2Empresa" class="form-label">Telemóvel 2</label>
+                            <input type="tel" id="telemovel2Empresa" name="telemovel2Empresa" class="form-input">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="emailEmpresa" class="form-label required">Email</label>
+                            <input type="email" id="emailEmpresa" name="emailEmpresa" class="form-input" required>
+                            <div class="error-message" id="emailEmpresaError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="websiteEmpresa" class="form-label">Website</label>
+                            <input type="url" id="websiteEmpresa" name="websiteEmpresa" class="form-input">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. DADOS FINANCEIROS -->
+                <div class="form-section">
+                    <h3 class="section-title">4. Dados Financeiros</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="volumeNegocios" class="form-label required">Volume de Negócios do Último Exercício</label>
+                            <input type="number" id="volumeNegocios" name="volumeNegocios" class="form-input" step="0.01" required>
+                            <div class="error-message" id="volumeNegociosError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="moedaVolumeNegocios" class="form-label required">Moeda</label>
+                            <select id="moedaVolumeNegocios" name="moedaVolumeNegocios" class="form-select" required>
+                                <option value="">Selecione...</option>
+                                <option value="AOA">AOA (Kwanza)</option>
+                                <option value="USD">USD (Dólar)</option>
+                                <option value="EUR">EUR (Euro)</option>
+                            </select>
+                            <div class="error-message" id="moedaVolumeNegociosError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="resultadoLiquido" class="form-label required">Resultado líquido do Último Exercício</label>
+                            <input type="number" id="resultadoLiquido" name="resultadoLiquido" class="form-input" step="0.01" required>
+                            <div class="error-message" id="resultadoLiquidoError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="moedaResultadoLiquido" class="form-label required">Moeda</label>
+                            <select id="moedaResultadoLiquido" name="moedaResultadoLiquido" class="form-select" required>
+                                <option value="">Selecione...</option>
+                                <option value="AOA">AOA (Kwanza)</option>
+                                <option value="USD">USD (Dólar)</option>
+                                <option value="EUR">EUR (Euro)</option>
+                            </select>
+                            <div class="error-message" id="moedaResultadoLiquidoError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="capitalSocial" class="form-label required">Capital Social</label>
+                            <input type="number" id="capitalSocial" name="capitalSocial" class="form-input" step="0.01" required>
+                            <div class="error-message" id="capitalSocialError"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 11. DADOS BANCÁRIOS -->
+                <div class="form-section">
+                    <h3 class="section-title">11. Dados Bancários</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">Já Possui Conta Custódia?</label>
+                            <div class="radio-group">
+                                <div class="radio-item">
+                                    <input type="radio" id="possuiContaSim" name="possuiContaCustodia" value="sim" class="radio-input">
+                                    <label for="possuiContaSim" class="radio-label">Sim</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="possuiContaNao" name="possuiContaCustodia" value="nao" class="radio-input" checked>
+                                    <label for="possuiContaNao" class="radio-label">Não</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="bancoEmpresa" class="form-label required">Banco</label>
+                            <input type="text" id="bancoEmpresa" name="bancoEmpresa" class="form-input" required>
+                            <div class="error-message" id="bancoEmpresaError"></div>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="ibanEmpresa" class="form-label required">IBAN</label>
+                            <input type="text" id="ibanEmpresa" name="ibanEmpresa" class="form-input" required>
+                            <div class="error-message" id="ibanEmpresaError"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <a href="index.html" class="btn btn-secondary">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="m15 18-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Voltar
+                    </a>
+                    
+                    <button type="button" id="nextBtnColetiva" class="btn btn-primary">
+                        Continuar
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+            </form>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <p class="footer-address">
+                    Rua Marechal Brós Tito nº 35/37, Torre Escom, 2º andar, Kinaxixi, Luanda
+                </p>
+                <p class="footer-nif">NIF: 5001492500</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/form-coletiva.js"></script>
+</body>
+</html>
+

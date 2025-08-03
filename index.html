@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abertura de Conta de Custódia - Distribuidora Valor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo-section">
+                <h1 class="company-name">DISTRIBUIDORA VALOR</h1>
+                <p class="company-subtitle">S.D.V.M. (SU), S.A.</p>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="hero-section">
+                <h2 class="main-title">Abertura de Conta de Custódia</h2>
+                <p class="subtitle">Escolha o tipo de conta que pretende abrir</p>
+            </div>
+
+            <div class="account-type-selection">
+                <div class="account-card" onclick="selectAccountType('individual')">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Sou Pessoa Singular</h3>
+                    <p class="card-description">Para clientes individuais que pretendem abrir uma conta de custódia pessoal</p>
+                    <div class="card-arrow">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="account-card" onclick="selectAccountType('coletiva')">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="m22 21-3-3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M16 8h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M19 5v6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Sou Pessoa Coletiva</h3>
+                    <p class="card-description">Para empresas, organizações e outras entidades coletivas</p>
+                    <div class="card-arrow">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-section">
+                <div class="info-card">
+                    <h4>Documentos Necessários</h4>
+                    <ul>
+                        <li>Documento de identificação válido</li>
+                        <li>Comprovativo de morada</li>
+                        <li>Comprovativo de rendimentos</li>
+                        <li>Dados bancários (IBAN)</li>
+                    </ul>
+                </div>
+                
+                <div class="info-card">
+                    <h4>Processo Seguro</h4>
+                    <ul>
+                        <li>Formulário encriptado</li>
+                        <li>Validação em tempo real</li>
+                        <li>Conformidade regulamentar</li>
+                        <li>Proteção de dados pessoais</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <p class="footer-address">
+                    Rua Marechal Brós Tito nº 35/37, Torre Escom, 2º andar, Kinaxixi, Luanda
+                </p>
+                <p class="footer-nif">NIF: 5001492500</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        function selectAccountType(type) {
+            // Add loading animation
+            const card = event.currentTarget;
+            card.style.transform = 'scale(0.98)';
+            
+            setTimeout(() => {
+                if (type === 'individual') {
+                    window.location.href = 'form-individual.html';
+                } else if (type === 'coletiva') {
+                    window.location.href = 'form-coletiva.html';
+                }
+            }, 150);
+        }
+
+        // Add hover effects
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.account-card');
+            
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-4px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+

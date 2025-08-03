@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário Pessoa Individual - Distribuidora Valor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo-section">
+                <h1 class="company-name">DISTRIBUIDORA VALOR</h1>
+                <p class="company-subtitle">S.D.V.M. (SU), S.A.</p>
+            </div>
+        </header>
+
+        <main class="form-container">
+            <div class="form-header">
+                <h2 class="form-title">Ficha de Abertura de Conta Individual</h2>
+                <p class="form-subtitle">Preencha todos os campos obrigatórios para abrir a sua conta de custódia</p>
+                
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <form id="individualForm" novalidate>
+                <!-- Tipo de Serviço -->
+                <div class="form-section">
+                    <h3 class="section-title">Tipo de Serviço</h3>
+                    <div class="form-group">
+                        <label class="form-label required">Selecione o tipo de serviço pretendido:</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="corretagem" name="tipoServico" value="CORRETAGEM" class="radio-input" required>
+                                <label for="corretagem" class="radio-label">Corretagem</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="gestaoNaoDiscricionaria" name="tipoServico" value="GESTAO_NAO_DISCRICIONARIA" class="radio-input">
+                                <label for="gestaoNaoDiscricionaria" class="radio-label">Gestão de Carteira Não Discricionária</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="gestaoDiscricionaria" name="tipoServico" value="GESTAO_DISCRICIONARIA" class="radio-input">
+                                <label for="gestaoDiscricionaria" class="radio-label">Gestão Discricionária</label>
+                            </div>
+                        </div>
+                        <div class="error-message" id="tipoServicoError"></div>
+                    </div>
+                </div>
+
+                <!-- 1. IDENTIFICAÇÃO -->
+                <div class="form-section">
+                    <h3 class="section-title">1. Identificação</h3>
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label for="nomeCompleto" class="form-label required">Nome Completo</label>
+                            <input type="text" id="nomeCompleto" name="nomeCompleto" class="form-input" required>
+                            <div class="error-message" id="nomeCompletoError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="nif" class="form-label required">NIF</label>
+                            <input type="text" id="nif" name="nif" class="form-input" required>
+                            <div class="error-message" id="nifError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Tem NIF Americano?</label>
+                            <div class="radio-group">
+                                <div class="radio-item">
+                                    <input type="radio" id="nifAmericanoSim" name="temNifAmericano" value="sim" class="radio-input">
+                                    <label for="nifAmericanoSim" class="radio-label">Sim</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="nifAmericanoNao" name="temNifAmericano" value="nao" class="radio-input" checked>
+                                    <label for="nifAmericanoNao" class="radio-label">Não</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group" id="nifAmericanoGroup" style="display: none;">
+                            <label for="nifAmericano" class="form-label">Nº NIF Americano</label>
+                            <input type="text" id="nifAmericano" name="nifAmericano" class="form-input">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label required">Género</label>
+                            <div class="radio-group">
+                                <div class="radio-item">
+                                    <input type="radio" id="generoMasc" name="genero" value="masculino" class="radio-input" required>
+                                    <label for="generoMasc" class="radio-label">Masculino</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="generoFem" name="genero" value="feminino" class="radio-input">
+                                    <label for="generoFem" class="radio-label">Feminino</label>
+                                </div>
+                            </div>
+                            <div class="error-message" id="generoError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="tipoDocumento" class="form-label required">Documento de Identificação</label>
+                            <select id="tipoDocumento" name="tipoDocumento" class="form-select" required>
+                                <option value="">Selecione...</option>
+                                <option value="BI">Bilhete de Identidade</option>
+                                <option value="CEDULA">Cédula</option>
+                                <option value="PASSAPORTE">Passaporte</option>
+                                <option value="CARTAO_ESTRANGEIRO">Cartão de Estrangeiro</option>
+                                <option value="OUTRO">Outro</option>
+                            </select>
+                            <div class="error-message" id="tipoDocumentoError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="numeroDocumento" class="form-label required">Nº Doc. Identificação</label>
+                            <input type="text" id="numeroDocumento" name="numeroDocumento" class="form-input" required>
+                            <div class="error-message" id="numeroDocumentoError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="entidadeEmissora" class="form-label required">Entidade Emissora</label>
+                            <input type="text" id="entidadeEmissora" name="entidadeEmissora" class="form-input" required>
+                            <div class="error-message" id="entidadeEmissoraError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="nacionalidade" class="form-label required">Nacionalidade</label>
+                            <input type="text" id="nacionalidade" name="nacionalidade" class="form-input" required>
+                            <div class="error-message" id="nacionalidadeError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="paisEmissao" class="form-label required">País de Emissão</label>
+                            <input type="text" id="paisEmissao" name="paisEmissao" class="form-input" required>
+                            <div class="error-message" id="paisEmissaoError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="dataEmissao" class="form-label required">Data de Emissão</label>
+                            <input type="date" id="dataEmissao" name="dataEmissao" class="form-input" required>
+                            <div class="error-message" id="dataEmissaoError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="dataValidade" class="form-label">Data de Validade</label>
+                            <input type="date" id="dataValidade" name="dataValidade" class="form-input">
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="vitalicio" name="vitalicio" class="checkbox-input">
+                                <label for="vitalicio" class="checkbox-label">Vitalício</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label required">Residente Cambial</label>
+                            <div class="radio-group">
+                                <div class="radio-item">
+                                    <input type="radio" id="residenteSim" name="residenteCambial" value="sim" class="radio-input" required>
+                                    <label for="residenteSim" class="radio-label">Sim</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="residenteNao" name="residenteCambial" value="nao" class="radio-input">
+                                    <label for="residenteNao" class="radio-label">Não</label>
+                                </div>
+                            </div>
+                            <div class="error-message" id="residenteCambialError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="dataNascimento" class="form-label required">Data de Nascimento</label>
+                            <input type="date" id="dataNascimento" name="dataNascimento" class="form-input" required>
+                            <div class="error-message" id="dataNascimentoError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Tem Outra Nacionalidade?</label>
+                            <div class="radio-group">
+                                <div class="radio-item">
+                                    <input type="radio" id="outraNacionalidadeSim" name="temOutraNacionalidade" value="sim" class="radio-input">
+                                    <label for="outraNacionalidadeSim" class="radio-label">Sim</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="outraNacionalidadeNao" name="temOutraNacionalidade" value="nao" class="radio-input" checked>
+                                    <label for="outraNacionalidadeNao" class="radio-label">Não</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group" id="outraNacionalidadeGroup" style="display: none;">
+                            <label for="outraNacionalidade" class="form-label">Qual?</label>
+                            <input type="text" id="outraNacionalidade" name="outraNacionalidade" class="form-input">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="profissao" class="form-label required">Profissão</label>
+                            <input type="text" id="profissao" name="profissao" class="form-input" required>
+                            <div class="error-message" id="profissaoError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="objectivo" class="form-label">Objectivo</label>
+                            <input type="text" id="objectivo" name="objectivo" class="form-input">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="nomePai" class="form-label">Nome do Pai</label>
+                            <input type="text" id="nomePai" name="nomePai" class="form-input">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="nomeMae" class="form-label">Nome da Mãe</label>
+                            <input type="text" id="nomeMae" name="nomeMae" class="form-input">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. MORADA DE RESIDÊNCIA PERMANENTE E CONTACTOS -->
+                <div class="form-section">
+                    <h3 class="section-title">2. Morada de Residência Permanente e Contactos</h3>
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label for="residencia" class="form-label required">Residência</label>
+                            <input type="text" id="residencia" name="residencia" class="form-input" required>
+                            <div class="error-message" id="residenciaError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="municipio" class="form-label required">Município</label>
+                            <input type="text" id="municipio" name="municipio" class="form-input" required>
+                            <div class="error-message" id="municipioError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="provincia" class="form-label required">Província</label>
+                            <input type="text" id="provincia" name="provincia" class="form-input" required>
+                            <div class="error-message" id="provinciaError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="codigoPostal" class="form-label">Código Postal</label>
+                            <input type="text" id="codigoPostal" name="codigoPostal" class="form-input">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="pais" class="form-label required">País</label>
+                            <input type="text" id="pais" name="pais" class="form-input" value="Angola" required>
+                            <div class="error-message" id="paisError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label required">Contacto Preferencial</label>
+                            <div class="radio-group">
+                                <div class="radio-item">
+                                    <input type="radio" id="contactoTelef" name="contactoPreferencial" value="telefone" class="radio-input" required>
+                                    <label for="contactoTelef" class="radio-label">Telefone</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="contactoEmail" name="contactoPreferencial" value="email" class="radio-input">
+                                    <label for="contactoEmail" class="radio-label">Email</label>
+                                </div>
+                            </div>
+                            <div class="error-message" id="contactoPreferencialError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="melhorHoraDas" class="form-label">Melhor Hora para Contacto - Das</label>
+                            <input type="time" id="melhorHoraDas" name="melhorHoraDas" class="form-input">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="melhorHoraAte" class="form-label">Até</label>
+                            <input type="time" id="melhorHoraAte" name="melhorHoraAte" class="form-input">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="telemovel" class="form-label required">Telemóvel</label>
+                            <input type="tel" id="telemovel" name="telemovel" class="form-input" required>
+                            <div class="error-message" id="telemovelError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="telemovelCasa" class="form-label">Telemóvel Casa</label>
+                            <input type="tel" id="telemovelCasa" name="telemovelCasa" class="form-input">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="telemovelTrabalho" class="form-label">Telemóvel Trabalho</label>
+                            <input type="tel" id="telemovelTrabalho" name="telemovelTrabalho" class="form-input">
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="email" class="form-label required">Email</label>
+                            <input type="email" id="email" name="email" class="form-input" required>
+                            <div class="error-message" id="emailError"></div>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="confirmaEndereco" name="confirmaEndereco" class="checkbox-input" required>
+                                <label for="confirmaEndereco" class="checkbox-label">Declaro que o endereço indicado acima corresponde à minha actual residência permanente</label>
+                            </div>
+                            <div class="error-message" id="confirmaEnderecoError"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Continuar com as outras seções... -->
+                <div class="form-actions">
+                    <a href="index.html" class="btn btn-secondary">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="m15 18-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Voltar
+                    </a>
+                    
+                    <button type="button" id="nextBtn" class="btn btn-primary">
+                        Continuar
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+            </form>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <p class="footer-address">
+                    Rua Marechal Brós Tito nº 35/37, Torre Escom, 2º andar, Kinaxixi, Luanda
+                </p>
+                <p class="footer-nif">NIF: 5001492500</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/form-individual.js"></script>
+</body>
+</html>
+
